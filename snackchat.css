@@ -1,1 +1,9 @@
 /* CSS declarations go here */
+
+.snack {
+  cursor: pointer;
+}
+
+.snack:hover {
+  text-decoration: underline;
+}

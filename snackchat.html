@@ -9,6 +9,29 @@
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <p>Do you feel like a snack?</p>
+  <form class="new-snack">
+    <input type="text" name="text" placeholder="Send a snack"/>
+    <input type="text" name="image_url" placeholder="image_url"/>
+    <input type="submit" value="Save"/>
+  </form>
+
+  <div class="snacks">
+    {{#each snacks}}
+      {{>snack}}
+    {{/each}}
+  </div>
+</template>
+
+
+<template name="snack">
+  <div class="snack">
+    <p>
+      {{ text }} ({{score}})
+      {{#if image}}
+      <br/>
+      <img src="{{image}}" height="50" />
+      {{/if}}
+    </p>
+  </div>
 </template>
