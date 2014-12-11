@@ -9,16 +9,16 @@
 </body>
 
 <template name="hello">
-  <p>Do you feel like a snack?</p>
   <form class="new-snack">
     <input type="text" name="text" placeholder="Send a snack"/>
     <input type="text" name="image_url" placeholder="image_url"/>
     <input type="submit" value="Save"/>
   </form>
 
+  <hr>
   <div class="snacks">
     {{#each snacks}}
-      {{>snack}}
+    {{>snack}}
     {{/each}}
   </div>
 </template>
