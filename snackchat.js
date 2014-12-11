@@ -6,31 +6,38 @@ if (Meteor.isClient) {
 
   Template.hello.helpers({
     snacks: function () {
-      return Snack.find({}, {sort: {score: -1, created_at: 1}});
+      return Snacks.find({}, {sort: {score: -1, created_at: 1}});
     }
   });
 
   Template.hello.events({
-    'submit .new-snack': function () {
-      // // increment the counter when button is clicked
-      // Session.set("counter", Session.get("counter") + 1);
-
+    'submit .new-snack': function() {
       var text = event.target.text.value;
-      var image_url = event.target.image_url.value;
+      var image = event.target.image_url.value;
 
-      // Insert snacks into database
+      // Insert snacks to database
       Snacks.insert({
         text: text,
-        image: image_url,
+        image: image,
         score: 0,
         created_at: new Date()
       });
 
-      // Clear form
+      // Clear input
       event.target.text.value = "";
-      event.target.image_url.value = "";
 
+      // Prevents default for submit
       return false;
+    }
+  });
+
+  Template.snack.events({
+    'click .snack': function() {
+      if (this.score >= 20) {
+        Snacks.remove(this._id);
+      } else {
+        Snacks.update(this._id, {$inc: {score: 1}});
+      }
     }
   });
 }
